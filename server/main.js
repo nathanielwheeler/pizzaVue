@@ -31,12 +31,15 @@ server.use(bp.urlencoded({
 //REGISTER YOUR SESSION, OTHERWISE YOU WILL NEVER GET LOGGED IN
 import AuthController from './controllers/AuthController'
 import Session from "./middleware/session"
+import PostsController from './controllers/PostsController'
 server.use(new Session().express)
 server.use('/account', new AuthController().router)
 
 
 //YOUR ROUTES HERE!!!!!!
 
+server.use('/api/posts', new PostsController().router)
+server.use('api/comments', new CommentsController().router)
 
 
 //Default Error Handler
