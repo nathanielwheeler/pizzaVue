@@ -1,15 +1,11 @@
 <template>
   <div class="user container-fluid">
     <h1>Hello {{user.name}}</h1>
-    <!-- <div id="navbar">
-      <a href="#home">Home</a>
-      <a href="user">User</a>
-      </div> 
-    <div class="row"> 
-      <div class="col-3"> 
-        
-      <userview v-for="user in userviews" :userProp="user" :key="user._id"/>
-    -->
+    <div class="row">
+      <div class="col-12">
+        <post v-for="post in posts" :postProp="post" :key="user.id" />
+      </div>
+    </div>
   </div>
 </template>
 
