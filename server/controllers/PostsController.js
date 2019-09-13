@@ -9,7 +9,8 @@ export default class PostsController {
     this.router = express.Router()
       .use(Authorize.authenticated)
       .get('', this.getAll)
-      // .get('/:id', this.getById)
+      .get('/my-posts', this.getByUserId)
+      .get('/:id', this.getById)
       // .get('/:id/comments', this.getComments)
       .post('', this.create)
       // .put('/:id', this.edit)
@@ -26,6 +27,17 @@ export default class PostsController {
   async getById(req, res, next) {
     try {
       let data = await _ps.findById(req.params.id).populate("user", "name")
+      if (!data) {
+        throw new Error("Invalid Id")
+      }
+      res.send(data)
+    } catch (error) { next(error) }
+  }
+
+  async getByUserId(req, res, next) {
+    try {
+
+      let data = await _ps.find({ user: req.session.uid }).populate('user', 'name')
       if (!data) {
         throw new Error("Invalid Id")
       }
