@@ -12,8 +12,8 @@ export default class PostsController {
       // .get('/:id', this.getById)
       // .get('/:id/comments', this.getComments)
       .post('', this.create)
-    // .put('/:id', this.edit)
-    // .delete('/:id', this.delete)
+      // .put('/:id', this.edit)
+      .delete('/:id', this.delete)
   }
 
   async getAll(req, res, next) {
@@ -23,15 +23,15 @@ export default class PostsController {
     } catch (error) { next(error) }
   }
 
-  // async getById(req, res, next) {
-  //   try {
-  //     let data = await _ps.findById(req.params.id).populate("user", "name")
-  //     if (!data) {
-  //       throw new Error("Invalid Id")
-  //     }
-  //     res.send(data)
-  //   } catch (error) { next(error) }
-  // }
+  async getById(req, res, next) {
+    try {
+      let data = await _ps.findById(req.params.id).populate("user", "name")
+      if (!data) {
+        throw new Error("Invalid Id")
+      }
+      res.send(data)
+    } catch (error) { next(error) }
+  }
 
   // async getComments(req, res, next) {
   //   try {
@@ -57,15 +57,15 @@ export default class PostsController {
   //   } catch (error) { next(error) }
   // }
 
-  // async delete(req, res, next) {
-  //   try {
-  //     let data = await _ps.findOneAndRemove({ _id: req.params.id, user: req.session.uid })
-  //     if (!data) {
-  //       throw new Error("Invalid Id")
-  //     }
-  //     res.send("Delete Blog Post")
-  //   } catch (error) { next(error) }
+  async delete(req, res, next) {
+    try {
+      let data = await _ps.findOneAndRemove({ _id: req.params.id, user: req.session.uid })
+      if (!data) {
+        throw new Error("Invalid Id")
+      }
+      res.send("Delete Blog Post")
+    } catch (error) { next(error) }
 
-  // }  
+  }
 
 }
