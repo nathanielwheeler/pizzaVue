@@ -13,6 +13,7 @@ export default class PostsController {
       .get('', this.getAll)
       .get('/my-posts', this.getByUserId)
       .get('/:id', this.getById)
+      .get('/user-posts/:userId', this.getUserPosts)
       .get('/:id/comments', this.getComments)
       .post('', this.create)
       // .put('/:id', this.edit)
@@ -40,6 +41,16 @@ export default class PostsController {
     try {
 
       let data = await _ps.find({ user: req.session.uid }).populate('user', 'name')
+      if (!data) {
+        throw new Error("Invalid Id")
+      }
+      res.send(data)
+    } catch (error) { next(error) }
+  }
+
+  async getUserPosts(req, res, next) {
+    try {
+      let data = await _ps.find({ user: req.params.userId }).populate('user', 'name')
       if (!data) {
         throw new Error("Invalid Id")
       }

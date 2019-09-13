@@ -8,7 +8,8 @@ Vue.use(Vuex)
 
 //Allows axios to work locally or live
 let api = Axios.create({
-  baseURL: '//localhost:3000/api'
+  baseURL: '//localhost:3000/api',
+  withCredentials: true
 })
 
 let base = window.location.host.includes('localhost:8080') ? '//localhost:3000/' : '/'
@@ -86,10 +87,11 @@ export default new Vuex.Store({
     //#endregion
 
     //#region -- POSTS --
-    async getPosts({ commit, dispatch }, data) { //TODO: Where's data coming from?
+    async getPosts({ commit, dispatch }, userId) { //TODO: Where' coming from?
       try {
-        let res = await api.get(`/posts/${data.userId}`)
-        commit('posts', res.data)
+        debugger
+        let res = await api.get(`/posts/user-posts/${userId}`)
+        commit('setPosts', res.data)
       } catch (error) {
         console.error(error)
       }

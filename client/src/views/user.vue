@@ -3,7 +3,7 @@
     <h1>Hello {{user.name}}</h1>
     <div class="row">
       <div class="col-12">
-        <post v-for="post in posts" :postProp="post" :key="user.id" />
+        <post v-for="post in posts" :postProp="post" :key="post.id" />
       </div>
     </div>
   </div>
@@ -11,13 +11,20 @@
 
 
 <script>
+import Post from "../components/Post";
 export default {
   name: "user",
   data() {
     return {};
   },
   mounted() {
-    this.$store.dispatch("getActiveUser");
+    // this.$store.dispatch("getActiveUser");
+    // let payload = { userId: this.$route.params.id };
+    if (this.$route.params.id) {
+      this.$store.dispatch("getPosts", this.$route.params.id);
+    } else {
+      this.$store.dispatch("getPosts", this.user._id);
+    }
   },
   computed: {
     user() {
@@ -25,10 +32,10 @@ export default {
     },
     posts() {
       return this.$store.state.posts;
-    },
-    methods: {},
-    components: { Post }
-  }
+    }
+  },
+  methods: {},
+  components: { Post }
 };
 </script>
 

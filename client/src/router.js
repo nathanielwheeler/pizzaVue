@@ -17,7 +17,11 @@ export default new Router({
       name: 'login',
       component: Login
     },
-
+    {
+      path: '/user/wall/:id',
+      name: 'userwall',
+      component: User
+    },
 
 
     {
