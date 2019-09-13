@@ -32,6 +32,7 @@ server.use(bp.urlencoded({
 import AuthController from './controllers/AuthController'
 import Session from "./middleware/session"
 import PostsController from './controllers/PostsController'
+import CommentController from './controllers/CommentController'
 server.use(new Session().express)
 server.use('/account', new AuthController().router)
 
@@ -39,7 +40,7 @@ server.use('/account', new AuthController().router)
 //YOUR ROUTES HERE!!!!!!
 
 server.use('/api/posts', new PostsController().router)
-// server.use('api/comments', new CommentsController().router)
+server.use('/api/comments', new CommentController().router)
 
 
 //Default Error Handler

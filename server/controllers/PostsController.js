@@ -1,8 +1,10 @@
 import express from 'express'
 import { Authorize } from '../middleware/authorize.js'
 import PostsService from '../services/PostsService.js'
+import CommentService from '../services/CommentService.js'
 
 let _ps = new PostsService().repository
+let _cs = new CommentService().repository
 
 export default class PostsController {
   constructor() {
@@ -11,7 +13,7 @@ export default class PostsController {
       .get('', this.getAll)
       .get('/my-posts', this.getByUserId)
       .get('/:id', this.getById)
-      // .get('/:id/comments', this.getComments)
+      .get('/:id/comments', this.getComments)
       .post('', this.create)
       // .put('/:id', this.edit)
       .delete('/:id', this.delete)
@@ -45,12 +47,12 @@ export default class PostsController {
     } catch (error) { next(error) }
   }
 
-  // async getComments(req, res, next) {
-  //   try {
-  //     let data = await _cs.find({ blogId: req.params.id }).populate('comment').populate('user', 'name')
-  //     return res.send(data)
-  //   } catch (error) { next(error) }
-  // }
+  async getComments(req, res, next) {
+    try {
+      let data = await _cs.find({ postId: req.params.id }).populate('comment').populate('user', 'name')
+      return res.send(data)
+    } catch (error) { next(error) }
+  }
   async create(req, res, next) {
     try {
       req.body.user = req.session.uid
