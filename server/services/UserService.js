@@ -32,9 +32,12 @@ _schema.statics.generateHash = function (password) {
 }
 
 export default class UserService {
-    get repository() {
-        return mongoose.model('User', _schema)
-    }
+  get repository() {
+    return mongoose.model('User', _schema)
+  }
+
+
+
 }
 
 

@@ -1,6 +1,8 @@
 import express from 'express'
-import _userService from '../services/UserService';
+import UserService from '../services/UserService.js';
 import { Authorize } from '../middleware/authorize'
+
+let _userService = new UserService().repository
 
 
 //PUBLIC
@@ -17,6 +19,13 @@ export default class UserController {
             res.send(users)
         } catch (error) { next(error) }
     }
+
+    // async findUserByQuery(req, res, next) {
+    //     try {
+    //         let users = await _userService.find(req.query).select('name email')
+    //         res.send(users)
+    //     } catch (error) { next(error) }
+    // }
 }
 
 
