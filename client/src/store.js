@@ -24,6 +24,7 @@ export default new Vuex.Store({
     users: [],
     activeUser: {},
     posts: [],
+    activePosts: {},
     userSearchResults: []
   },
   mutations: {
@@ -66,9 +67,8 @@ export default new Vuex.Store({
       } catch (e) {
         console.warn(e.message)
       }
-
-
     },
+
     //#endregion
 
     //#region -- USERS --
@@ -79,14 +79,21 @@ export default new Vuex.Store({
         let res = await _api.get('users/find?name=' + query)
         commit('setUserSearchResults', res.data)
       } catch (error) {
-        //TODO handle this catch
+        console.error(error)
       }
 
-    }
+    },
     //#endregion
 
     //#region -- POSTS --
-
+    async getPosts({ commit, dispatch }, data) { //TODO: Where's data coming from?
+      try {
+        let res = await api.get(`/posts/${data.userId}`)
+        commit('posts', res.data)
+      } catch (error) {
+        console.error(error)
+      }
+    }
     //#endregion
 
 
