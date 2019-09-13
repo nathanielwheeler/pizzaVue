@@ -7,6 +7,10 @@ import AuthService from './AuthService'
 Vue.use(Vuex)
 
 //Allows axios to work locally or live
+let api = Axios.create({
+  baseURL: '//localhost:3000/api'
+})
+
 let base = window.location.host.includes('localhost:8080') ? '//localhost:3000/' : '/'
 
 let _api = Axios.create({
@@ -17,13 +21,14 @@ let _api = Axios.create({
 
 export default new Vuex.Store({
   state: {
-    user: {},
+    users: [],
+    activeUser: {},
     posts: [],
     userSearchResults: []
   },
   mutations: {
     setUser(state, user) {
-      state.user = user
+      state.activeUser = user
     },
     setPosts(state, posts) {
       state.posts = posts
@@ -38,7 +43,7 @@ export default new Vuex.Store({
       try {
         let user = await AuthService.Register(creds)
         commit('setUser', user)
-        router.push({ name: "home" })
+        router.push({ name: "user" })
       } catch (e) {
         console.warn(e.message)
       }
@@ -47,7 +52,7 @@ export default new Vuex.Store({
       try {
         let user = await AuthService.Login(creds)
         commit('setUser', user)
-        router.push({ name: "home" })
+        router.push({ name: "user" })
       } catch (e) {
         console.warn(e.message)
       }
@@ -61,6 +66,8 @@ export default new Vuex.Store({
       } catch (e) {
         console.warn(e.message)
       }
+
+
     },
     //#endregion
 
