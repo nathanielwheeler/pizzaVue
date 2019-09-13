@@ -1,5 +1,6 @@
 import express from 'express'
 import { Authorize } from '../middleware/authorize.js'
+import PostsService from '../services/PostsService.js'
 
 let _ps = new PostsService().repository
 
@@ -8,11 +9,11 @@ export default class PostsController {
     this.router = express.Router()
       .use(Authorize.authenticated)
       .get('', this.getAll)
-      .get('/:id', this.getById)
-      .get('/:id/comments', this.getComments)
+      // .get('/:id', this.getById)
+      // .get('/:id/comments', this.getComments)
       .post('', this.create)
-      .put('/:id', this.edit)
-      .delete('/:id', this.delete)
+    // .put('/:id', this.edit)
+    // .delete('/:id', this.delete)
   }
 
   async getAll(req, res, next) {
@@ -24,7 +25,7 @@ export default class PostsController {
 
   // async getById(req, res, next) {
   //   try {
-  //     let data = await _ps.findById(req.params.id).populate("author", "name")
+  //     let data = await _ps.findById(req.params.id).populate("user", "name")
   //     if (!data) {
   //       throw new Error("Invalid Id")
   //     }
@@ -34,13 +35,13 @@ export default class PostsController {
 
   // async getComments(req, res, next) {
   //   try {
-  //     let data = await _cs.find({ blogId: req.params.id }).populate('comment').populate('author', 'name')
+  //     let data = await _cs.find({ blogId: req.params.id }).populate('comment').populate('user', 'name')
   //     return res.send(data)
   //   } catch (error) { next(error) }
   // }
   async create(req, res, next) {
     try {
-      req.body.author = req.session.uid
+      req.body.user = req.session.uid
       let data = await _ps.create(req.body)
       res.send(data)
     } catch (error) { next(error) }
@@ -48,7 +49,7 @@ export default class PostsController {
 
   // async edit(req, res, next) {
   //   try {
-  //     let data = await _ps.findOneAndUpdate({ _id: req.params.id, author: req.session.uid }, req.body, { new: true }).populate('author', 'name')
+  //     let data = await _ps.findOneAndUpdate({ _id: req.params.id, user: req.session.uid }, req.body, { new: true }).populate('user', 'name')
   //     if (data) {
   //       return res.send(data)
   //     }
@@ -58,7 +59,7 @@ export default class PostsController {
 
   // async delete(req, res, next) {
   //   try {
-  //     let data = await _ps.findOneAndRemove({ _id: req.params.id, author: req.session.uid })
+  //     let data = await _ps.findOneAndRemove({ _id: req.params.id, user: req.session.uid })
   //     if (!data) {
   //       throw new Error("Invalid Id")
   //     }

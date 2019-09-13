@@ -39,7 +39,7 @@ server.use('/account', new AuthController().router)
 //YOUR ROUTES HERE!!!!!!
 
 server.use('/api/posts', new PostsController().router)
-server.use('api/comments', new CommentsController().router)
+// server.use('api/comments', new CommentsController().router)
 
 
 //Default Error Handler
