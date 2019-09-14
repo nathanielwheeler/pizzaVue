@@ -1,7 +1,7 @@
 <template>
   <div class="user container-fluid">
     <div class="row">
-      <div class="col">
+      <span>
         <CreatePostModal />
         <button
           type="button"
@@ -9,10 +9,8 @@
           data-toggle="modal"
           data-target="#create-post-modal"
         >Create Post</button>
-      </div>
-      <div class="row">
         <post v-for="post in posts" :postProp="post" :key="post.id" />
-      </div>
+      </span>
     </div>
   </div>
 </template>

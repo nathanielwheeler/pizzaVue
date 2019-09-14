@@ -153,7 +153,7 @@ export default new Vuex.Store({
       try {
         let res = await api.delete(`/comments/${payload._id}`)
         dispatch("getComments", payload)
-        router.push({ name: 'postDetails' })
+        // router.push({ name: 'postDetails' })
       } catch (error) {
 
       }
