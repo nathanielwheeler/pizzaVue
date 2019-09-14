@@ -1,6 +1,11 @@
 <template>
   <div class="comments">
-    <p>{{commentProp.body}}</p>
+    <p>
+      {{commentProp.body}}
+      <span>
+        <button class="btn btn-danger" @click="deleteComment">x</button>
+      </span>
+    </p>
   </div>
 </template>
 
@@ -16,7 +21,12 @@ export default {
       return this.$store.state.comments;
     }
   },
-  methods: {},
+  methods: {
+    deleteComment() {
+      debugger;
+      this.$store.dispatch("deleteComment", this.commentProp);
+    }
+  },
   components: {}
 };
 </script>

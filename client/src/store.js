@@ -138,7 +138,25 @@ export default new Vuex.Store({
       } catch (error) {
 
       }
-    }
+    },
+    async addComment({ commit, dispatch }, payload) {
+      try {
+        let res = await api.post(`/comments`, payload)
+        dispatch('getComments', payload)
+      } catch (error) {
+
+      }
+    },
+    async deleteComment({ commit, dispatch }, payload) {
+      try {
+        debugger
+        let res = await api.delete(`/comments/${payload._id}`)
+        dispatch("getComments", payload)
+        router.push({ name: 'postDetails' })
+      } catch (error) {
+
+      }
+    },
 
     //#endregion
 

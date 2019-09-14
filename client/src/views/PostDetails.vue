@@ -7,7 +7,13 @@
     <p>{{postDetails.user.name}}</p>
     <div class="btn btn-danger" @click="deletePost">Delete Post</div>
     <div>
-      Comments:
+      <CreateCommentModal />
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-toggle="modal"
+        data-target="#create-comment-modal"
+      >+</button> Comments:
       <comment v-for="comment in comments" :commentProp="comment" :key="comment.id" />
     </div>
   </div>
@@ -17,6 +23,7 @@
 <script>
 import Post from "../components/Post";
 import Comment from "../components/Comment";
+import CreateCommentModal from "../components/CreateCommentModal";
 
 export default {
   name: "postDetails",
@@ -43,7 +50,7 @@ export default {
       this.$store.dispatch("deletePost", this.$route.params.postId);
     }
   },
-  components: { Comment }
+  components: { Comment, CreateCommentModal }
 };
 </script>
 
