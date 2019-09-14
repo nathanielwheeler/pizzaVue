@@ -1,6 +1,7 @@
 <template>
   <div class="user container-fluid">
     <div class="row">
+      <SearchComponent />
       <span>
         <CreatePostModal />
         <button
@@ -18,6 +19,7 @@
 //Placeholder
 
 <script>
+import SearchComponent from "../components/SearchComponent";
 import Post from "../components/Post";
 import CreatePostModal from "../components/CreatePostModal";
 import Following from "../components/Following";
@@ -45,7 +47,7 @@ export default {
     }
   },
   methods: {},
-  components: { Post, CreatePostModal }
+  components: { Post, CreatePostModal, SearchComponent }
 };
 </script>
 
