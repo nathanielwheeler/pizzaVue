@@ -1,11 +1,11 @@
 <template>
-  <div class="component"></div>
+  <div class="followers">Followers!</div>
 </template>
 
 
 <script>
 export default {
-  name: "component",
+  name: "followers",
   data() {
     return {};
   },
@@ -17,4 +17,8 @@ export default {
 
 
 <style scoped>
+followers {
+  height: 50vh;
+  border: 1px dashed red;
+}
 </style>
