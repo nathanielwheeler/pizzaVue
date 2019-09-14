@@ -26,6 +26,7 @@ export default new Vuex.Store({
     activeUser: {},
     posts: [],
     activePosts: {},
+    comments: [],
     userSearchResults: [],
     following: [],
     followers: [],
@@ -36,6 +37,12 @@ export default new Vuex.Store({
     },
     setPosts(state, posts) {
       state.posts = posts
+    },
+    setActivePost(state, payload) {
+      state.activePost = payload
+    },
+    setComments(state, payload) {
+      state.comments = payload
     },
     setUserSearchResults(state, users) {
       state.userSearchResults = users
@@ -97,17 +104,35 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
+    async getPostById({ commit, dispatch }, payload) {
+      try {
+        let res = await api.get(`/posts/${payload.postId}`)
+        commit("setActivePost", res.data)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+
 
     async addPost({ dispatch, state }, payload) {
       try {
-        debugger
         let res = await api.post('/posts', payload)
         dispatch('getPosts', payload.userId)
       } catch (error) {
         console.error(error)
 
       }
+    },
+
+    async getComments({ commit, dispatch }, payload) {
+      try {
+        let res = await api.get(`/posts/` + payload.postId + '/comments')
+        commit("setComments", res.data)
+      } catch (error) {
+        console.error(error)
+      }
     }
+
     //#endregion
 
 

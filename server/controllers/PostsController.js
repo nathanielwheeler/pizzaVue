@@ -60,7 +60,9 @@ export default class PostsController {
 
   async getComments(req, res, next) {
     try {
-      let data = await _cs.find({ postId: req.params.id }).populate('comment').populate('user', 'name')
+      let data = await _cs.find({ postId: req.params.id })
+        .populate('comment')
+        .populate('user', 'name')
       return res.send(data)
     } catch (error) { next(error) }
   }
