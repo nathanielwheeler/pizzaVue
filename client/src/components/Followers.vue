@@ -6,14 +6,20 @@
 
 
 <script>
+import User from "./User";
+
 export default {
   name: "followers",
   data() {
     return {};
   },
-  computed: {},
+  computed: {
+    followers() {
+      return this.$store.state.followers;
+    }
+  },
   methods: {},
-  components: {}
+  components: { User }
 };
 </script>
 
