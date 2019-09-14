@@ -17,6 +17,7 @@
   </div>
 </template>
 
+//Placeholder
 
 <script>
 import Post from "../components/Post";
