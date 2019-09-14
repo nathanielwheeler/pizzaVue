@@ -89,11 +89,21 @@ export default new Vuex.Store({
     //#region -- POSTS --
     async getPosts({ commit, dispatch }, userId) { //TODO: Where' coming from?
       try {
-        debugger
         let res = await api.get(`/posts/user-posts/${userId}`)
         commit('setPosts', res.data)
       } catch (error) {
         console.error(error)
+      }
+    },
+
+    async addPost({ dispatch, state }, payload) {
+      try {
+        let res = await api.post('/posts', payload)
+        debugger
+        dispatch('getPosts', payload.userId)
+      } catch (error) {
+        console.error(error)
+
       }
     }
     //#endregion

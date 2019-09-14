@@ -30,6 +30,7 @@ export default class UserController {
     }
     async followUser(req, res, next) {
         try {
+            console.log("following user")
             let following = await _userFollowingService
                 .create({ follower: req.session.uid, following: req.params.id })
             res.send(following)

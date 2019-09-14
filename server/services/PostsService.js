@@ -8,6 +8,7 @@ const _model = new Schema({
   imgURL: { type: String },
   location: { type: String, required: true },
   user: { type: ObjectId, ref: 'User', required: true },
+  likeCount: { type: Number, default: 0 }
 }, { timestamps: true })
 
 export default class PostsService {

@@ -1,12 +1,8 @@
 <template>
-  <div class="Post card" @click="postDetails()">
-    <div class="card-img-top">
-      <img :src="postProp.imgUrl" alt />
-      <div class="card-title">
-        <h4>{{postProp.title}}</h4>
-        <h5>{{postProp.user.name}}</h5>
-      </div>
-    </div>
+  <div class="Post" @click="postDetails()">
+    <img :src="postProp.imgURL" alt />
+    <h4>{{postProp.title}}</h4>
+    <h5>{{postProp.user.name}}</h5>
   </div>
 </template>
 
@@ -19,10 +15,18 @@ export default {
   },
   computed: {},
   methods: {
-    // postDetails() {}
+    postDetails() {
+      this.$router.push({
+        name: user,
+        params: { postId: this.postProp.userId }
+      });
+    }
   }
 };
 </script>
 
 <style>
+img {
+  height: 200px;
+}
 </style>
