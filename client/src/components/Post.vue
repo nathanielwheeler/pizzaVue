@@ -1,5 +1,5 @@
 <template>
-  <div class="Post" @click="postDetails()">
+  <div class="col-4 Post" @click="postDetails()">
     <img :src="postProp.imgURL" alt />
     <h4>{{postProp.title}}</h4>
     <h5>{{postProp.user.name}}</h5>
@@ -17,7 +17,7 @@ export default {
   methods: {
     postDetails() {
       this.$router.push({
-        name: user,
+        name: "user",
         params: { postId: this.postProp.userId }
       });
     }

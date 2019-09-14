@@ -11,9 +11,9 @@
             <input
               type="text"
               class="form-control"
-              id="imgurl"
+              id="imgURL"
               placeholder="Enter imgurl"
-              v-model="newPost.imgUrl"
+              v-model="newPost.imgURL"
             />
           </div>
           <div class="modal-body">
@@ -79,7 +79,7 @@ export default {
   methods: {
     addPost() {
       this.newPost.userId = this.user._id;
-      this.$store.dispatch("addPost", this.newPost.userId);
+      this.$store.dispatch("addPost", this.newPost);
       this.newPost = {};
     }
   },

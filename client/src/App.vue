@@ -7,8 +7,8 @@
       <div class="row">
         <div class="col-3" id="sidenav">
           <div id="sidenav">
-            <Following />
-            <Followers />
+            <!-- <Following />
+            <Followers />-->
           </div>
         </div>
         <div class="col-9" id="main">
@@ -28,9 +28,6 @@
 </template>
 
 <script>
-import Following from "./components/Following";
-import Followers from "./components/Followers";
-
 export default {
   name: "App"
 };

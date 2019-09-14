@@ -11,9 +11,7 @@
         >Create Post</button>
       </div>
       <div class="row">
-        <div class="col-6">
-          <post v-for="post in posts" :postProp="post" :key="post.id" />
-        </div>
+        <post v-for="post in posts" :postProp="post" :key="post.id" />
       </div>
     </div>
   </div>
@@ -23,6 +21,8 @@
 <script>
 import Post from "../components/Post";
 import CreatePostModal from "../components/CreatePostModal";
+import Following from "../components/Following";
+import Followers from "../components/Followers";
 export default {
   name: "user",
   data() {

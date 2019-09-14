@@ -98,8 +98,8 @@ export default new Vuex.Store({
 
     async addPost({ dispatch, state }, payload) {
       try {
-        let res = await api.post('/posts', payload)
         debugger
+        let res = await api.post('/posts', payload)
         dispatch('getPosts', payload.userId)
       } catch (error) {
         console.error(error)
