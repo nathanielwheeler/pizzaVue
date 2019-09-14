@@ -151,7 +151,6 @@ export default new Vuex.Store({
     },
     async deleteComment({ commit, dispatch }, payload) {
       try {
-        debugger
         let res = await api.delete(`/comments/${payload._id}`)
         dispatch("getComments", payload)
         router.push({ name: 'postDetails' })

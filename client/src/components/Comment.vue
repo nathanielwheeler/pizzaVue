@@ -23,7 +23,6 @@ export default {
   },
   methods: {
     deleteComment() {
-      debugger;
       this.$store.dispatch("deleteComment", this.commentProp);
     }
   },
