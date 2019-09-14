@@ -129,6 +129,15 @@ export default new Vuex.Store({
       } catch (error) {
         console.error(error)
       }
+    },
+    async deletePost({ commit, dispatch }, payload) {
+      try {
+        let res = await api.delete(`/posts/${payload}`)
+        dispatch("getPosts")
+        router.push({ name: 'user' })
+      } catch (error) {
+
+      }
     }
 
     //#endregion

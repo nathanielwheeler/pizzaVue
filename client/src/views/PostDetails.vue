@@ -5,8 +5,11 @@
     <p>{{postDetails.body}}</p>
     <p>{{postDetails.location}}</p>
     <p>{{postDetails.user.name}}</p>
-
-    <comment v-for="comment in comments" :commentProp="comment" :key="comment.id" />
+    <div class="btn btn-danger" @click="deletePost">Delete Post</div>
+    <div>
+      Comments:
+      <comment v-for="comment in comments" :commentProp="comment" :key="comment.id" />
+    </div>
   </div>
 </template>
 
@@ -35,7 +38,11 @@ export default {
       return this.$store.state.comments;
     }
   },
-  methods: {},
+  methods: {
+    deletePost() {
+      this.$store.dispatch("deletePost", this.$route.params.postId);
+    }
+  },
   components: { Comment }
 };
 </script>
