@@ -17,8 +17,8 @@ export default {
   methods: {
     postDetails() {
       this.$router.push({
-        name: "user",
-        params: { postId: this.postProp.userId }
+        name: "postDetails",
+        params: { postId: this.postProp._id }
       });
     }
   }
