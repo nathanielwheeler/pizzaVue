@@ -1,5 +1,4 @@
 import mongoose from "mongoose"
-import bcrypt from 'bcryptjs'
 let Schema = mongoose.Schema
 let ObjectId = Schema.Types.ObjectId
 
