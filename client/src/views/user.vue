@@ -1,9 +1,19 @@
 <template>
   <div class="user container-fluid">
-    <h1>Hello {{user.name}}</h1>
     <div class="row">
-      <div class="col-12">
-        <post v-for="post in posts" :postProp="post" :key="post.id" />
+      <div class="col">
+        <CreatePostModal />
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-toggle="modal"
+          data-target="#create-post-modal"
+        >Create Post</button>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <post v-for="post in posts" :postProp="post" :key="post.id" />
+        </div>
       </div>
     </div>
   </div>
@@ -12,6 +22,7 @@
 
 <script>
 import Post from "../components/Post";
+import CreatePostModal from "../components/CreatePostModal";
 export default {
   name: "user",
   data() {
@@ -35,7 +46,7 @@ export default {
     }
   },
   methods: {},
-  components: { Post }
+  components: { Post, CreatePostModal }
 };
 </script>
 
