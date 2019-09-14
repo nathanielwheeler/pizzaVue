@@ -10,6 +10,7 @@
         >Search</button>
       </div>
       <input type="text" class="form-control" placeholder="Search a User..." v-model="query" />
+      <button class="btn btn-primary" v-if="query">Clear Search</button>
     </div>
     <usersFound v-for="usersFound in users" :userProp="usersFound" :key="usersFound.name" />
   </div>
