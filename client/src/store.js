@@ -25,7 +25,7 @@ export default new Vuex.Store({
     users: [],
     activeUser: {},
     posts: [],
-    activePosts: {},
+    activePost: {},
     comments: [],
     userSearchResults: [],
     following: [],
