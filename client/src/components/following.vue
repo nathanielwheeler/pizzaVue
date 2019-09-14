@@ -1,5 +1,7 @@
 <template>
-  <div class="following">Following!</div>
+  <div class="following">
+    <h5 class="text-center">Users Following</h5>
+  </div>
 </template>
 
 
@@ -17,8 +19,8 @@ export default {
 
 
 <style scoped>
-following {
+.following {
   height: 50vh;
-  border: 1px dashed green;
+  overflow-y: auto;
 }
 </style>

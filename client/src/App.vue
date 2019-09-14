@@ -1,21 +1,27 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link>
+    <div class="main-layout">
+      <div class="leftbar">
+        <following />
+        <followers />
+      </div>
+      <div class="main-content-container">
+        <div id="nav">
+          <router-link to="/">Home</router-link>
+        </div>
+        <router-view />
+      </div>
     </div>
-    <div class="container-fluid">
+    <!-- <div class="container-fluid">
       <div class="row">
         <div class="col-3" id="sidenav">
-          <div id="sidenav">
-            <!-- <Following />
-            <Followers />-->
-          </div>
+          <sidenav />
         </div>
         <div class="col-9" id="main">
           <router-view />
         </div>
       </div>
-    </div>
+    </div>-->
     <!-- <div class="user container-fluid">
     <div class="row"> 
       <div class="col-3"> 
@@ -28,13 +34,33 @@
 </template>
 
 <script>
+import Followers from "./components/Followers";
+import Following from "./components/Following";
+
 export default {
-  name: "App"
+  name: "App",
+  components: { Followers, Following }
 };
 </script>
 
 <style>
-#navbar a {
+.main-layout {
+  display: grid;
+  grid-template-areas: "sidebar . main";
+  grid-template-columns: 25% 1fr;
+  grid-row: auto;
+}
+
+.leftbar {
+  grid-area: sidebar;
+  padding-right: 10px;
+}
+
+.main-layout-container {
+  grid-area: main;
+}
+
+/* #navbar a {
   float: left;
   display: block;
   color: gray;
@@ -58,9 +84,6 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
-#sidenav {
-  height: 100vh;
-}
 
 #nav {
   padding: 30px;
@@ -73,5 +96,5 @@ export default {
 
 #nav a.router-link-exact-active {
   color: #42b983;
-}
+} */
 </style>

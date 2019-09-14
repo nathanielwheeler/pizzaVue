@@ -1,5 +1,7 @@
 <template>
-  <div class="followers">Followers!</div>
+  <div class="followers">
+    <h5 class="text-center">Followers</h5>
+  </div>
 </template>
 
 
@@ -17,8 +19,8 @@ export default {
 
 
 <style scoped>
-followers {
+.followers {
   height: 50vh;
-  border: 1px dashed red;
+  overflow-y: auto;
 }
 </style>
