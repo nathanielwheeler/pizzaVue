@@ -1,10 +1,22 @@
 <template>
   <div id="app">
+    <div id="nav">
+      <router-link to="/">Home</router-link>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-3" id="sidenav">
+          <div id="sidenav">
+            <Following />
+            <Followers />
+          </div>
+        </div>
+        <div class="col-9" id="main">
+          <router-view />
+        </div>
+      </div>
+    </div>
     <!-- <div class="user container-fluid">
-    <div id="navbar">
-      <a href="#home">Home</a>
-      <a href="user">User</a>
-      </div> 
     <div class="row"> 
       <div class="col-3"> 
         
@@ -12,12 +24,13 @@
     
 
     </div>-->
-    <router-link to="/">userview</router-link>
-    <router-view />
   </div>
 </template>
 
 <script>
+import Following from "./components/Following";
+import Followers from "./components/Followers";
+
 export default {
   name: "App"
 };
@@ -47,6 +60,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+#sidenav {
+  height: 100vh;
 }
 
 #nav {
